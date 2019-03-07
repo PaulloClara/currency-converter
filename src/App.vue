@@ -1,19 +1,28 @@
 <template>
 <div id="app">
   <div class="container">
-    <Card coin='infos da coin aqui' />
+    <Card :coin="listCoinInfos" />
   </div>
 </div>
 </template>
 
 <script>
+import api from './services/api'
 import Card from './components/Card.vue'
 
 export default {
   name: 'app',
+  data(){
+    return {
+      listCoinInfos: {},
+    }
+  },
   components: {
     Card
-  }
+  },
+  mounted(){
+    api().then(response => {this.listCoinInfos = response })
+  },
 }
 </script>
 
