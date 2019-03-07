@@ -1,4 +1,5 @@
 module.exports = {
-  baseUrl: '/conversor-de-moedas/',
-  outputDir: 'dist'
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/my-project/'
+    : '/'
 }

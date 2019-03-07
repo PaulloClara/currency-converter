@@ -9,6 +9,7 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
+    "bulma": "^0.7.4",
     "vue": "^2.6.6"
   },
   "devDependencies": {
