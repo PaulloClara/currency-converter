@@ -15,15 +15,10 @@ yarn run serve
 yarn run build
 ```
 
-### Run your tests
+### Run your deploy
 ```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
+yarn run deploy
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Conversor de Moedas
+See the [Conversor de Moedas](https://paulloclara.github.io/conversor-de-moedas/).
