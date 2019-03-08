@@ -1,7 +1,7 @@
 <template>
-<div id="app">
-  <div class="container">
-    <Card :coin="listCoinInfos" />
+<div class="container" id="app">
+  <div class="columns is-multiline is-vcentered">
+    <Card v-for="coinInfo in listCoinInfos" :key="coinInfo.name" :coin="coinInfo" />
   </div>
 </div>
 </template>
@@ -32,6 +32,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 1%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
 }
 </style>
