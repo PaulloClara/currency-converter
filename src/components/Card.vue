@@ -1,4 +1,5 @@
 <template>
+<div class="column is-one-quarter">
 <div class="card">
   <div class="card-header">
     <h1 class="card-header-title is-centered">{{ coin.name }}</h1>
@@ -14,8 +15,8 @@
     <p class="card-footer-item">{{ coin.date }}</p>
   </div>
 </div>
+</div>
 </template>
-
 
 <script>
 export default {
