@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.4",
-    "vue": "^2.6.6"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
@@ -20,7 +20,7 @@
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "push-dir": "^0.4.1",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,
