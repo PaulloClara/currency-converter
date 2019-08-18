@@ -1,47 +1,54 @@
 <template>
-  <div class="container" id="app">
-    <div class="columns is-multiline is-centered">
-      <Card v-for="coinInfo in listCoinInfos" :key="coinInfo.name" :coin="coinInfo" />
+  <div class="container is-fluid" id="app">
+    <div id="cardInputReal" class="card">
+      <div class="card-header">
+        <h1 class="card-header-title is-centered">Real Brasileiro</h1>
+      </div>
+      <div class="card-content">
+        <money v-model="real" class="input is-primary is-rounded" />
+      </div>
     </div>
-    <div>
-      <br/>
-      <button class="button" @click="show=!show">Mostrar Os Dados</button>
-    </div>
-    <div class="footer">
-      <p v-show="show">{{ listCoinInfos }}</p>
+    <div class="columns is-vcentered is-multiline">
+      <div v-for="coin of coins" :key="coin.name" class="column">
+        <Card :coin="coin" :real="real" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import api from './services/api'
-import Card from './components/Card.vue'
+import Api from './services/api';
+import Card from './components/Card';
 
 export default {
   name: 'App',
   components: {
     Card,
   },
-  data(){
+  data() {
     return {
-      listCoinInfos: {},
+      coins: [],
+      real: '',
       show: false,
     };
   },
   methods: {
-    refine(res) {
-      const coins = [];
-      for (const coin in res) {
-        const { code, name, low: value, create_date: date } = res[coin];
-        coins.push({ code, name, value, date });
+    async getCoins() {
+      const res = (await Api()).data;
+      for (const coinCode in res) {
+        const coin = res[coinCode];
+        if (coin.code === 'BTC') {
+          coin.high = coin.high.replace(/\./g, '');
+          coin.low = coin.low.replace(/\./g, '');
+        }
+        coin.high = parseFloat(coin.high.replace(',', '.'));
+        coin.low = parseFloat(coin.low.replace(',', '.'));
+        this.coins.push(coin);
       }
-      return coins;
-    }
+    },
   },
-  async mounted() {
-    const res = (await api()).data;
-    this.listCoinInfos = this.refine(res)
-
+  mounted() {
+    this.getCoins();
   },
 };
 </script>
@@ -49,10 +56,14 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 1.5%;
-  margin-bottom: 1.5%;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding-top: 20px;
+}
+#cardInputReal {
+  margin-bottom: 20px;
+}
+body {
+  background-color: #9C9C9C;
 }
 </style>

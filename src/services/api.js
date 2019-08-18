@@ -1,3 +1,3 @@
 import http from './http';
 
-export default () => http.get('');
+export default () => http.get('/all');

@@ -1,19 +1,19 @@
 <template>
-  <div class="column is-one-quarter">
-    <div class="card">
-      <div class="card-header">
-        <h1 class="card-header-title is-centered">{{ coin.name }}</h1>
+  <div class="card minWidth">
+    <div class="card-header">
+      <h3 class="card-header-title is-centered">{{ coin.name }}</h3>
+    </div>
+    <div class="card-content">
+      <label class="label">Valor em {{ coin.code }}</label>
+      <money v-model="coinInput" class="input is-rounded is-primary" />
+      <div class="marginTop">
+        <p>Alta: {{ calcCoinBRL(coin.high) }} BRL</p>
+        <p>Baixa: {{ calcCoinBRL(coin.low) }} BRL</p>
+        <p>Variaçao: {{ calcCoinBRL(coin.high - coin.low) }} BRL</p>
       </div>
-      <div class="card-content">
-        <label>{{ coin.code }} {{ calcBRCoin() }}</label>
-        <input class="input is-rounded" type="number" placeholder="BRL" v-model="inputBRL">
-        <br><br><br>
-        <label>BRL {{ calcCoinBR() }}</label>
-        <input class="input is-rounded" type="number" :placeholder="coin.code" v-model="inputCoin">
-      </div>
-      <div class="card-footer">
-        <label class="card-footer-item">{{ coin.date }}</label>
-      </div>
+    </div>
+    <div class="card-footer">
+      <label class="card-footer-item">{{ coin.create_date }}</label>
     </div>
   </div>
 </template>
@@ -22,24 +22,35 @@
 export default {
   name: 'Card',
   props: {
-    coin: {},
+    coin: Object,
+    real: Number,
   },
   data() {
-    return{
-      inputCoin: '',
-      inputBRL: '',
+    return {
+      coinInput: '',
     };
   },
-  methods: {
-    calcBRCoin() {
-      return (this.inputBRL / this.coin.value).toFixed(2);
-    },
-    calcCoinBR() {
-      return (this.inputCoin * this.coin.value).toFixed(2);
+  watch: {
+    real(value) {
+      this.coinInput = this.calcBRLCoin(value);
     },
   },
-  mounted() {
-    this.coin.value = this.coin.value.replace(',', '.');
-  }
+  methods: {
+    calcBRLCoin(value) {
+      return (value / ((this.coin.high + this.coin.low) / 2)).toFixed(2);
+    },
+    calcCoinBRL(value) {
+      return (this.coinInput * value).toFixed(2);
+    },
+  },
 };
 </script>
+
+<style>
+.minWidth {
+  min-width: 200px;
+}
+.marginTop {
+  margin-top: 20px;
+}
+</style>
