@@ -20,20 +20,20 @@
 
 <script>
 export default {
-  name: 'Card',
+  name: "Card",
   props: {
     coin: Object,
-    real: Number,
+    real: Number
   },
   data() {
     return {
-      coinInput: '',
+      coinInput: ""
     };
   },
   watch: {
     real(value) {
       this.coinInput = this.calcBRLCoin(value);
-    },
+    }
   },
   methods: {
     calcBRLCoin(value) {
@@ -41,8 +41,8 @@ export default {
     },
     calcCoinBRL(value) {
       return (this.coinInput * value).toFixed(2);
-    },
-  },
+    }
+  }
 };
 </script>
 

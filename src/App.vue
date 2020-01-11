@@ -17,45 +17,45 @@
 </template>
 
 <script>
-import Api from './services/api';
-import Card from './components/Card';
+import Api from "./services/api";
+import Card from "./components/Card";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Card,
+    Card
   },
   data() {
     return {
       coins: [],
-      real: '',
-      show: false,
+      real: "",
+      show: false
     };
   },
   methods: {
     async getCoins() {
-      const res = (await Api()).data;
+      const res = (await Api.getAll()).data;
       for (const coinCode in res) {
         const coin = res[coinCode];
-        if (coin.code === 'BTC') {
-          coin.high = coin.high.replace(/\./g, '');
-          coin.low = coin.low.replace(/\./g, '');
+        if (coin.code === "BTC") {
+          coin.high = coin.high.replace(/\./g, "");
+          coin.low = coin.low.replace(/\./g, "");
         }
-        coin.high = parseFloat(coin.high.replace(',', '.'));
-        coin.low = parseFloat(coin.low.replace(',', '.'));
+        coin.high = parseFloat(coin.high.replace(",", "."));
+        coin.low = parseFloat(coin.low.replace(",", "."));
         this.coins.push(coin);
       }
-    },
+    }
   },
   mounted() {
     this.getCoins();
-  },
+  }
 };
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   margin-right: 20px;
   margin-left: 20px;
   padding-top: 20px;
@@ -64,6 +64,6 @@ export default {
   margin-bottom: 20px;
 }
 body {
-  background-color: #9C9C9C;
+  background-color: #9c9c9c;
 }
 </style>
