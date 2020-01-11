@@ -1,3 +1,12 @@
-import http from './http';
+import axios from "axios";
 
-export default () => http.get('/all');
+const https = axios.create({
+  baseURL: "https://economia.awesomeapi.com.br",
+  timeout: 20000
+});
+
+export default {
+  getAll() {
+    return https.get("/all");
+  }
+};
