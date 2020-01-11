@@ -47,10 +47,10 @@ export default {
   },
   methods: {
     async getCoins() {
-      const res = (await Api.getAll()).data;
+      const coins = (await Api.getAll()).data;
 
-      for (const coinCode in res) {
-        const coin = res[coinCode];
+      Object.keys(coins).forEach(coinCode => {
+        const coin = coins[coinCode];
 
         if (["USD", "EUR"].find(code => code === coinCode)) {
           const average = (parseFloat(coin.high) + parseFloat(coin.low)) / 2;
@@ -61,7 +61,7 @@ export default {
         coin.high = parseFloat(coin.high.replace(",", "."));
 
         this.coinList.push(coin);
-      }
+      });
     },
     changeValue({ value, code }) {
       this.coin[code].amount = value;
