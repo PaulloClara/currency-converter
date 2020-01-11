@@ -1,15 +1,12 @@
 <template lang="html">
   <div class="field">
     <div id="my-field-label" class="field-label has-text-left">
-      <label class="label">{{ label }}</label>
+      <label class="label" v-text="label" />
     </div>
+
     <div class="field-body">
       <div class="field">
-        <money
-          v-model="coin"
-          class="input is-primary is-rounded"
-          @input="inputEvt"
-        />
+        <money v-model="coin" class="input is-primary" @input="inputEvt" />
       </div>
     </div>
   </div>
@@ -38,6 +35,6 @@ export default {
 
 <style lang="css" scoped>
 #my-field-label {
-  margin-left: 14px;
+  margin-left: 6px;
 }
 </style>
