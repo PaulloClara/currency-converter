@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="field">
-    <div id="my-field-label" class="field-label has-text-left">
+    <div id="field-label" class="field-label has-text-left">
       <label class="label" v-text="label" />
     </div>
 
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#my-field-label {
+#field-label {
   margin-left: 6px;
 }
 </style>

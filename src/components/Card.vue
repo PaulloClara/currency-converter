@@ -54,6 +54,8 @@ export default {
 <style>
 #card {
   min-width: 200px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 6px 2px;
 }
 
 #card-content {

@@ -29,16 +29,16 @@ export default {
     return {
       coin: {
         brl: {
-          amount: "",
-          value: "1"
+          value: "1",
+          amount: ""
         },
         usd: {
-          amount: "",
-          value: ""
+          value: "",
+          amount: ""
         },
         eur: {
-          amount: "",
-          value: ""
+          value: "",
+          amount: ""
         },
         value: ""
       },
@@ -76,11 +76,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#fields {
-  margin-bottom: 20px;
+#app {
+  margin: 12px 20px 12px 20px;
 }
 
-#app {
-  margin: 20px;
+#fields {
+  margin: 0px 0px 30px 0px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px 2px;
 }
 </style>
