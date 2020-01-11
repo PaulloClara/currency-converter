@@ -3,15 +3,19 @@
     <div class="card-header">
       <h3 class="card-header-title is-centered">{{ coin.name }}</h3>
     </div>
+
     <div class="card-content">
       <label class="label">Valor em {{ coin.code }}</label>
-      <money v-model="coinInput" class="input is-rounded is-primary" />
+
+      <money v-model="amountOfCoins" class="input is-rounded is-primary" />
+
       <div class="marginTop">
-        <p>Alta: {{ calcCoinBRL(coin.high) }} BRL</p>
-        <p>Baixa: {{ calcCoinBRL(coin.low) }} BRL</p>
-        <p>Variaçao: {{ calcCoinBRL(coin.high - coin.low) }} BRL</p>
+        <p>Alta: {{ coinHigh }} BRL</p>
+        <p>Baixa: {{ coinLow }} BRL</p>
+        <p>Variaçao: {{ coinDiff }} BRL</p>
       </div>
     </div>
+
     <div class="card-footer">
       <label class="card-footer-item">{{ coin.create_date }}</label>
     </div>
@@ -21,26 +25,27 @@
 <script>
 export default {
   name: "Card",
-  props: {
-    coin: Object,
-    real: Number
-  },
+  props: ["coin", "brl"],
   data() {
     return {
-      coinInput: ""
+      amountOfCoins: ""
     };
   },
-  watch: {
-    real(value) {
-      this.coinInput = this.calcBRLCoin(value);
+  computed: {
+    coinHigh() {
+      return (this.amountOfCoins * this.coin.high).toFixed(2);
+    },
+    coinLow() {
+      return (this.amountOfCoins * this.coin.low).toFixed(2);
+    },
+    coinDiff() {
+      return (this.amountOfCoins * (this.coin.high - this.coin.low)).toFixed(2);
     }
   },
-  methods: {
-    calcBRLCoin(value) {
-      return (value / ((this.coin.high + this.coin.low) / 2)).toFixed(2);
-    },
-    calcCoinBRL(value) {
-      return (this.coinInput * value).toFixed(2);
+  watch: {
+    brl(value) {
+      const average = (this.coin.high + this.coin.low) / 2;
+      this.amountOfCoins = (value / average).toFixed(2);
     }
   }
 };

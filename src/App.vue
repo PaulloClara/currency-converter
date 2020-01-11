@@ -1,16 +1,13 @@
-<template>
-  <div class="container is-fluid" id="app">
-    <div id="cardInputReal" class="card">
-      <div class="card-header">
-        <h1 class="card-header-title is-centered">Real Brasileiro</h1>
-      </div>
-      <div class="card-content">
-        <money v-model="real" class="input is-primary is-rounded" />
-      </div>
+<template lang="html">
+  <div id="app" class="container is-fluid">
+    <div id="fields" class="columns">
+      <Field class="column" label="Real BRL" @input="changeValue" />
+      <Field class="column" label="Dolar USD" @input="changeValue" />
+      <Field class="column" label="Euro EUR" @input="changeValue" />
     </div>
     <div class="columns is-vcentered is-multiline">
-      <div v-for="coin of coins" :key="coin.name" class="column">
-        <Card :coin="coin" :real="real" />
+      <div v-for="_coin of coinList" :key="_coin.name" class="column">
+        <Card :coin="_coin" :brl="coin.value" />
       </div>
     </div>
   </div>
@@ -19,51 +16,76 @@
 <script>
 import Api from "./services/api";
 import Card from "./components/Card";
+import Field from "./components/Field";
 
 export default {
   name: "App",
   components: {
-    Card
+    Card,
+    Field
   },
   data() {
     return {
-      coins: [],
-      real: "",
+      coin: {
+        brl: {
+          amount: "",
+          value: "1"
+        },
+        usd: {
+          amount: "",
+          value: ""
+        },
+        eur: {
+          amount: "",
+          value: ""
+        },
+        value: ""
+      },
+      coinList: [],
       show: false
     };
   },
   methods: {
     async getCoins() {
       const res = (await Api.getAll()).data;
+
       for (const coinCode in res) {
         const coin = res[coinCode];
-        if (coin.code === "BTC") {
-          coin.high = coin.high.replace(/\./g, "");
-          coin.low = coin.low.replace(/\./g, "");
+
+        if (["USD", "EUR"].find(code => code === coinCode)) {
+          const average = (parseFloat(coin.high) + parseFloat(coin.low)) / 2;
+          this.coin[coinCode.toLowerCase()].value = average;
         }
-        coin.high = parseFloat(coin.high.replace(",", "."));
+
+        if (coin.code === "BTC") {
+          coin.low = coin.low.replace(/\./g, "");
+          coin.high = coin.high.replace(/\./g, "");
+        }
+
         coin.low = parseFloat(coin.low.replace(",", "."));
-        this.coins.push(coin);
+        coin.high = parseFloat(coin.high.replace(",", "."));
+
+        this.coinList.push(coin);
       }
+    },
+    changeValue({ value, code }) {
+      this.coin[code].amount = value;
+
+      this.coin.value = this.coin[code].amount * this.coin[code].value;
     }
   },
-  mounted() {
+  created() {
     this.getCoins();
   }
 };
 </script>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  margin-right: 20px;
-  margin-left: 20px;
-  padding-top: 20px;
-}
+<style lang="css" scoped>
 #cardInputReal {
-  margin-bottom: 20px;
+  margin: 20px;
 }
-body {
-  background-color: #9c9c9c;
+
+#fields {
+  margin: 20px;
 }
 </style>
