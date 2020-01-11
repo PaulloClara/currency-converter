@@ -1,24 +1,14 @@
-# conversor-de-moedas
+# Conversor de Moedas
 
-## Project setup
-```
-yarn install
-```
+Front Web para consumir API de terceiro.
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+### Modulos
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+- Vue
+- Bulma
+- Axios
 
-### Run your deploy
-```
-yarn run deploy
-```
+#### Links
 
-### Conversor de Moedas
-See the [Conversor de Moedas](https://paulloclara.github.io/conversor-de-moedas/).
+Site [Conversor de Moedas](https://paulloclara.github.io/conversor-de-moedas)\
+API [AwesomeAPI](https://docs.awesomeapi.com.br/)
