@@ -5,6 +5,7 @@
       <Field class="column" label="Dolar USD" @input="changeValue" />
       <Field class="column" label="Euro EUR" @input="changeValue" />
     </div>
+
     <div class="columns is-vcentered is-multiline">
       <div v-for="_coin of coinList" :key="_coin.name" class="column">
         <Card :coin="_coin" :brl="coin.value" />
@@ -41,8 +42,7 @@ export default {
         },
         value: ""
       },
-      coinList: [],
-      show: false
+      coinList: []
     };
   },
   methods: {
@@ -55,11 +55,6 @@ export default {
         if (["USD", "EUR"].find(code => code === coinCode)) {
           const average = (parseFloat(coin.high) + parseFloat(coin.low)) / 2;
           this.coin[coinCode.toLowerCase()].value = average;
-        }
-
-        if (coin.code === "BTC") {
-          coin.low = coin.low.replace(/\./g, "");
-          coin.high = coin.high.replace(/\./g, "");
         }
 
         coin.low = parseFloat(coin.low.replace(",", "."));
@@ -81,11 +76,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#cardInputReal {
-  margin: 20px;
+#fields {
+  margin-bottom: 20px;
 }
 
-#fields {
+#app {
   margin: 20px;
 }
 </style>
