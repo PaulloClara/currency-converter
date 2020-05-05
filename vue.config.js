@@ -1,4 +1,6 @@
+const { NODE_ENV } = process.env;
+
 module.exports = {
-  publicPath:
-    process.env.NODE_ENV === "production" ? "/conversor-de-moedas/" : "/"
+  publicPath: NODE_ENV === "production" ? "/conversor-de-moedas/" : "/",
+  lintOnSave: false
 };
