@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "lint": "vue-cli-service lint"
