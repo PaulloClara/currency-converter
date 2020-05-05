@@ -76,12 +76,24 @@ export default {
 </script>
 
 <style lang="css" scoped>
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
 #app {
-  margin: 12px 20px 12px 20px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  padding: 12px;
 }
 
 #fields {
   margin: 0px 0px 30px 0px;
+
   border-radius: 6px;
   box-shadow: 0px 0px 6px 2px;
 }

@@ -1,12 +1,14 @@
 import Vue from "vue";
-import money from "v-money";
-import App from "./App.vue";
+import Money from "v-money";
+
+import App from "@/App";
 import "../node_modules/bulma/css/bulma.min.css";
 
-Vue.use(money, { precision: 2 });
-
+Vue.use(Money, { precision: 2 });
 Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App)
+  render(h) {
+    return h(App);
+  }
 }).$mount("#app");
