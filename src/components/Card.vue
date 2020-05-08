@@ -11,6 +11,7 @@
         :newValue="$data.newValue"
         :name="$props.coin.code"
       >
+        <template #prefix>{{ $props.coin.symbol }}</template>
         Valor em {{ $props.coin.code }}
       </c-field>
 
@@ -133,6 +134,9 @@ export default {
 
 .footer {
   text-align: center;
+
+  color: #eee;
+  font: lighter 16px small-caption;
 }
 
 .date {

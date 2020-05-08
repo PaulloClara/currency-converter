@@ -1,9 +1,18 @@
 <template lang="html">
   <div id="app">
     <header class="header">
-      <c-field v-model="$data.brl">Real BRL</c-field>
-      <c-field v-model="$data.usd">Dolar USD</c-field>
-      <c-field v-model="$data.eur">Euro EUR</c-field>
+      <c-field v-model="$data.brl">
+        <template #prefix>R$</template>
+        Real BRL
+      </c-field>
+      <c-field v-model="$data.usd">
+        <template #prefix>{{ $data.coins.usd.symbol }}</template>
+        Dolar USD
+      </c-field>
+      <c-field v-model="$data.eur">
+        <template #prefix>{{ $data.coins.eur.symbol }}</template>
+        Euro EUR
+      </c-field>
     </header>
 
     <main class="content">
@@ -154,6 +163,10 @@ export default {
   .c-field {
     width: 100%;
     max-width: unset;
+  }
+
+  .c-field + .c-field {
+    margin-top: 12px;
   }
 }
 </style>

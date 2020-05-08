@@ -24,6 +24,22 @@ export default {
       coins[code.toLowerCase()] = coin;
     });
 
+    coins.ars.symbol = "$";
+    coins.aud.symbol = "$";
+    coins.btc.symbol = "₿";
+    coins.cad.symbol = "$";
+    coins.chf.symbol = "~";
+    coins.cny.symbol = "¥";
+    coins.eth.symbol = "~";
+    coins.eur.symbol = "€";
+    coins.gbp.symbol = "£";
+    coins.ils.symbol = "₪";
+    coins.jpy.symbol = "¥";
+    coins.ltc.symbol = "~";
+    coins.usd.symbol = "$";
+    coins.usdt.symbol = "$";
+    coins.xrp.symbol = "~";
+
     return coins;
   }
 };
