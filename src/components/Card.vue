@@ -11,53 +11,9 @@
       </c-field>
 
       <aside class="details">
-        <figure class="line">
-          <img
-            class="icon"
-            src="@/assets/up.svg"
-            @load="SVGInject($event.target)"
-          />
-          <span class="result">
-            {{
-              Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL"
-              }).format(coinHigh)
-            }}
-          </span>
-        </figure>
-
-        <figure class="line">
-          <img
-            class="icon"
-            src="@/assets/down.svg"
-            @load="SVGInject($event.target)"
-          />
-          <span class="result">
-            {{
-              Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL"
-              }).format(coinLow)
-            }}
-          </span>
-        </figure>
-
-        <figure class="line">
-          <img
-            class="icon"
-            src="@/assets/variation.svg"
-            @load="SVGInject($event.target)"
-          />
-          <span class="result">
-            {{
-              Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL"
-              }).format(coinDiff)
-            }}
-          </span>
-        </figure>
+        <c-result icon="up" :value="coinUp"></c-result>
+        <c-result icon="down" :value="coinDown"></c-result>
+        <c-result icon="variation" :value="coinVar"></c-result>
       </aside>
     </main>
 
@@ -71,12 +27,13 @@
 
 <script>
 import Field from "@/components/Field";
-import SVGInject from "@iconfu/svg-inject";
+import Result from "@/components/Result";
 
 export default {
   name: "Card",
   components: {
-    "c-field": Field
+    "c-field": Field,
+    "c-result": Result
   },
   props: {
     coin: {
@@ -95,13 +52,13 @@ export default {
     };
   },
   computed: {
-    coinHigh() {
+    coinUp() {
       return (this.value * this.coin.high).toFixed(2);
     },
-    coinLow() {
+    coinDown() {
       return (this.value * this.coin.low).toFixed(2);
     },
-    coinDiff() {
+    coinVar() {
       return (this.value * (this.coin.high - this.coin.low)).toFixed(2);
     }
   },
@@ -110,9 +67,6 @@ export default {
       this.value = (value / this.coin.medium).toFixed(2);
       this.newValue = this.value;
     }
-  },
-  methods: {
-    SVGInject
   }
 };
 </script>
@@ -162,10 +116,6 @@ export default {
 
 .details {
   margin-top: 22px;
-}
-
-.result {
-  margin-left: 12px;
 }
 
 .footer {
