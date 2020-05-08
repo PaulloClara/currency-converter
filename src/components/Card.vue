@@ -17,7 +17,14 @@
             src="@/assets/up.svg"
             @load="SVGInject($event.target)"
           />
-          <span class="result">{{ coinHigh }} BRL</span>
+          <span class="result">
+            {{
+              Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+              }).format(coinHigh)
+            }}
+          </span>
         </figure>
 
         <figure class="line">
@@ -26,7 +33,14 @@
             src="@/assets/down.svg"
             @load="SVGInject($event.target)"
           />
-          <span class="result">{{ coinLow }} BRL</span>
+          <span class="result">
+            {{
+              Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+              }).format(coinLow)
+            }}
+          </span>
         </figure>
 
         <figure class="line">
@@ -35,7 +49,14 @@
             src="@/assets/variation.svg"
             @load="SVGInject($event.target)"
           />
-          <span class="result">{{ coinDiff }} BRL</span>
+          <span class="result">
+            {{
+              Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+              }).format(coinDiff)
+            }}
+          </span>
         </figure>
       </aside>
     </main>
