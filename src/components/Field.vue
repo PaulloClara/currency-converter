@@ -1,40 +1,67 @@
 <template lang="html">
-  <div class="field">
-    <div id="field-label" class="field-label has-text-left">
-      <label class="label" v-text="label" />
-    </div>
-
-    <div class="field-body">
-      <div class="field">
-        <money v-model="coin" class="input is-primary" @input="inputEvt" />
-      </div>
-    </div>
+  <div class="c-field">
+    <label class="label" :for="$attrs.name">
+      <slot name="default"></slot>
+    </label>
+    <c-input
+      class="input"
+      :value="value"
+      :name="$attrs.name"
+      @input="$emit('input', $event)"
+    ></c-input>
   </div>
 </template>
 
 <script>
+import { Money } from "v-money";
+
 export default {
   name: "Field",
-  props: ["label"],
-  data() {
-    return {
-      coin: "",
-      coinCode: ""
-    };
+  components: {
+    "c-input": Money
   },
-  methods: {
-    inputEvt(value) {
-      this.$emit("input", { value, code: this.coinCode });
+  props: {
+    newValue: {
+      type: String,
+      required: false
     }
   },
-  created() {
-    this.coinCode = this.label.split(" ")[1].toLowerCase();
+  data() {
+    return {
+      value: ""
+    };
+  },
+  watch: {
+    newValue(value) {
+      this.value = value;
+    }
   }
 };
 </script>
 
 <style lang="css" scoped>
-#field-label {
-  margin-left: 6px;
+.c-field {
+  display: flex;
+  flex-direction: column;
+
+  color: #fff;
+}
+
+.label {
+  margin-bottom: 6px;
+  font: bold 17px small-caption;
+}
+
+.input {
+  padding: 6px 12px;
+
+  border: 2px solid var(--dollar);
+  border-radius: 16px;
+
+  outline: none;
+  text-align: right;
+
+  color: var(--dollar);
+  font: bold 17px caption;
 }
 </style>

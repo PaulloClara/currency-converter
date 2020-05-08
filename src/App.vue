@@ -1,100 +1,163 @@
 <template lang="html">
-  <div id="app" class="container is-fluid">
-    <div id="fields" class="columns">
-      <Field class="column" label="Real BRL" @input="changeValue" />
-      <Field class="column" label="Dolar USD" @input="changeValue" />
-      <Field class="column" label="Euro EUR" @input="changeValue" />
-    </div>
+  <div id="app">
+    <header class="header">
+      <c-field v-model="$data.brl">Real BRL</c-field>
+      <c-field v-model="$data.usd">Dolar USD</c-field>
+      <c-field v-model="$data.eur">Euro EUR</c-field>
+    </header>
 
-    <div class="columns is-vcentered is-multiline">
-      <div v-for="_coin of coinList" :key="_coin.name" class="column">
-        <Card :coin="_coin" :brl="coin.value" />
-      </div>
-    </div>
+    <main class="content">
+      <c-card
+        v-for="(coin, index) of coins"
+        :key="index"
+        :coin="coin"
+        :brl="brl"
+      ></c-card>
+    </main>
+
+    <footer class="footer"></footer>
   </div>
 </template>
 
 <script>
-import Api from "./services/api";
-import Card from "./components/Card";
-import Field from "./components/Field";
+import Api from "@/services/api";
+
+import Card from "@/components/Card";
+import Field from "@/components/Field";
 
 export default {
   name: "App",
   components: {
-    Card,
-    Field
+    "c-card": Card,
+    "c-field": Field
   },
   data() {
     return {
-      coin: {
-        brl: {
-          value: "1",
-          amount: ""
-        },
-        usd: {
-          value: "",
-          amount: ""
-        },
-        eur: {
-          value: "",
-          amount: ""
-        },
-        value: ""
-      },
-      coinList: []
+      brl: 0,
+      usd: 0,
+      eur: 0,
+      coins: [],
+      masterCoins: {}
     };
   },
-  methods: {
-    async getCoins() {
-      const coins = (await Api.getAll()).data;
-
-      Object.keys(coins).forEach(coinCode => {
-        const coin = coins[coinCode];
-
-        if (["USD", "EUR"].find(code => code === coinCode)) {
-          const average = (parseFloat(coin.high) + parseFloat(coin.low)) / 2;
-          this.coin[coinCode.toLowerCase()].value = average;
-        }
-
-        coin.low = parseFloat(coin.low.replace(",", "."));
-        coin.high = parseFloat(coin.high.replace(",", "."));
-
-        this.coinList.push(coin);
-      });
+  watch: {
+    usd(value) {
+      this.$data.brl = value * this.$data.masterCoins.USD.medium;
     },
-    changeValue({ value, code }) {
-      this.coin[code].amount = value;
-
-      this.coin.value = this.coin[code].amount * this.coin[code].value;
+    eur(value) {
+      this.$data.brl = value * this.$data.masterCoins.EUR.medium;
     }
   },
-  created() {
-    this.getCoins();
+  methods: {
+    async getCoinsInfos() {
+      const { coins, masterCoins } = await Api.getAll();
+
+      this.$data.coins = coins;
+      this.$data.masterCoins = masterCoins;
+    }
+  },
+  mounted() {
+    this.getCoinsInfos();
   }
 };
 </script>
 
 <style lang="css" scoped>
-* {
-  margin: 0;
-  padding: 0;
-
-  box-sizing: border-box;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  padding: 12px;
+  background-color: var(--dollar);
 }
 
-#fields {
-  margin: 0px 0px 30px 0px;
+.header {
+  display: flex;
+  justify-content: space-around;
 
-  border-radius: 6px;
-  box-shadow: 0px 0px 6px 2px;
+  margin: 0 0 24px;
+  padding: 12px;
+
+  box-shadow: inset 2px -1px 4px #0004;
+  background-color: var(--bitcoin);
+}
+
+.c-field {
+  width: 32%;
+  max-width: 280px;
+}
+
+.content {
+  display: grid;
+
+  grid-gap: 12px;
+  grid-template-columns: repeat(8, 1fr);
+
+  padding: 0 80px;
+}
+
+@media only screen and (max-width: 2580px) {
+  .content {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+@media only screen and (max-width: 2180px) {
+  .content {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media only screen and (max-width: 1920px) {
+  .content {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media only screen and (max-width: 1620px) {
+  .content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .content {
+    padding: 0 24px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .content {
+    padding: 0 12px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .c-field {
+    width: 100%;
+    max-width: unset;
+  }
 }
 </style>

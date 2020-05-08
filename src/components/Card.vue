@@ -1,64 +1,157 @@
 <template>
-  <div id="card" class="card">
-    <div class="card-header">
-      <h3 class="card-header-title is-centered">{{ coin.name }}</h3>
-    </div>
+  <section class="c-card">
+    <header class="header">
+      <h3 class="title">{{ coin.name }}</h3>
+      <hr class="divider" />
+    </header>
 
-    <div class="card-content">
-      <label class="label">Valor em {{ coin.code }}</label>
+    <main class="content">
+      <c-field v-model="value" :newValue="newValue">
+        Valor em {{ coin.code }}
+      </c-field>
 
-      <money v-model="amount" class="input is-rounded is-primary" />
+      <aside class="details">
+        <figure class="line">
+          <img
+            class="icon"
+            src="@/assets/up.svg"
+            @load="SVGInject($event.target)"
+          />
+          <span class="result">{{ coinHigh }} BRL</span>
+        </figure>
 
-      <div id="card-content">
-        <p>Alta: {{ coinHigh }} BRL</p>
-        <p>Baixa: {{ coinLow }} BRL</p>
-        <p>Variaçao: {{ coinDiff }} BRL</p>
-      </div>
-    </div>
+        <figure class="line">
+          <img
+            class="icon"
+            src="@/assets/down.svg"
+            @load="SVGInject($event.target)"
+          />
+          <span class="result">{{ coinLow }} BRL</span>
+        </figure>
 
-    <div class="card-footer">
-      <label class="card-footer-item">{{ coin.create_date }}</label>
-    </div>
-  </div>
+        <figure class="line">
+          <img
+            class="icon"
+            src="@/assets/variation.svg"
+            @load="SVGInject($event.target)"
+          />
+          <span class="result">{{ coinDiff }} BRL</span>
+        </figure>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <hr class="divider" />
+
+      <p class="date">{{ coin.create_date }}</p>
+    </footer>
+  </section>
 </template>
 
 <script>
+import Field from "@/components/Field";
+import SVGInject from "@iconfu/svg-inject";
+
 export default {
   name: "Card",
-  props: ["coin", "brl"],
+  components: {
+    "c-field": Field
+  },
+  props: {
+    coin: {
+      type: Object,
+      required: true
+    },
+    brl: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
-      amount: ""
+      value: "",
+      newValue: ""
     };
   },
   computed: {
     coinHigh() {
-      return (this.amount * this.coin.high).toFixed(2);
+      return (this.value * this.coin.high).toFixed(2);
     },
     coinLow() {
-      return (this.amount * this.coin.low).toFixed(2);
+      return (this.value * this.coin.low).toFixed(2);
     },
     coinDiff() {
-      return (this.amount * (this.coin.high - this.coin.low)).toFixed(2);
+      return (this.value * (this.coin.high - this.coin.low)).toFixed(2);
     }
   },
   watch: {
     brl(value) {
-      const average = (this.coin.high + this.coin.low) / 2;
-      this.amount = (value / average).toFixed(2);
+      this.value = (value / this.coin.medium).toFixed(2);
+      this.newValue = this.value;
     }
+  },
+  methods: {
+    SVGInject
   }
 };
 </script>
 
-<style>
-#card {
-  min-width: 200px;
-  border-radius: 12px;
-  box-shadow: 0px 0px 6px 2px;
+<style lang="css" scoped>
+.c-card {
+  color: #fff;
+
+  width: 100%;
+  min-width: 280px;
+
+  border-radius: 4px;
+
+  transition: box-shadow 0.4s;
+
+  box-shadow: inset 0 0 6px 1px #0004;
+  background-color: var(--bitcoin);
 }
 
-#card-content {
-  margin-top: 20px;
+.c-card:hover {
+  box-shadow: inset 0 0 12px 2px #0004;
+}
+
+.title {
+  padding: 12px;
+
+  text-align: center;
+  text-shadow: 0 0 4px #000;
+
+  color: #fff;
+  font: bold 20px caption;
+}
+
+.divider {
+  height: 1px;
+  background-color: #0004;
+
+  border-radius: 50%;
+}
+
+.content {
+  padding: 24px;
+
+  font: normal 18px small-caption;
+  text-shadow: 0 0 2px #000;
+}
+
+.details {
+  margin-top: 22px;
+}
+
+.result {
+  margin-left: 12px;
+}
+
+.footer {
+  text-align: center;
+}
+
+.date {
+  padding: 12px 0;
 }
 </style>
