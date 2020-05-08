@@ -13,7 +13,7 @@
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--bitcoin) #ccc;
+  scrollbar-color: var(--dollar) #ccc;
 }
 
 ::-webkit-scrollbar {
@@ -25,5 +25,5 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--bitcoin);
+  background-color: var(--dollar);
 }
