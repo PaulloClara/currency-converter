@@ -20,7 +20,17 @@
     <footer class="footer">
       <hr class="divider" />
 
-      <p class="date">{{ coin.create_date }}</p>
+      <p class="date">
+        {{
+          Intl.DateTimeFormat("pt-BR", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+          }).format(new Date(coin.create_date))
+        }}
+      </p>
     </footer>
   </section>
 </template>
