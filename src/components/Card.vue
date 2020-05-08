@@ -1,13 +1,17 @@
 <template>
   <section class="c-card">
     <header class="header">
-      <h3 class="title">{{ coin.name }}</h3>
+      <h3 class="title">{{ $props.coin.name }}</h3>
       <hr class="divider" />
     </header>
 
     <main class="content">
-      <c-field v-model="value" :newValue="newValue" :name="coin.code">
-        Valor em {{ coin.code }}
+      <c-field
+        v-model="$data.value"
+        :newValue="$data.newValue"
+        :name="$props.coin.code"
+      >
+        Valor em {{ $props.coin.code }}
       </c-field>
 
       <aside class="details">
@@ -27,7 +31,7 @@
             year: "numeric",
             hour: "2-digit",
             minute: "2-digit"
-          }).format(new Date(coin.create_date))
+          }).format($props.coin.create_date)
         }}
       </p>
     </footer>
@@ -62,19 +66,19 @@ export default {
   },
   computed: {
     coinUp() {
-      return (this.value * this.coin.high).toFixed(2);
+      return (this.$data.value * this.$props.coin.high).toFixed(2);
     },
     coinDown() {
-      return (this.value * this.coin.low).toFixed(2);
+      return (this.$data.value * this.$props.coin.low).toFixed(2);
     },
     coinVar() {
-      return (this.value * (this.coin.high - this.coin.low)).toFixed(2);
+      return (this.$data.value * this.$props.coin.diff).toFixed(2);
     }
   },
   watch: {
     brl(value) {
-      this.value = (value / this.coin.medium).toFixed(2);
-      this.newValue = this.value;
+      this.$data.value = (value / this.$props.coin.medium).toFixed(2);
+      this.$data.newValue = this.$data.value;
     }
   }
 };

@@ -36,28 +36,24 @@ export default {
       brl: 0,
       usd: 0,
       eur: 0,
-      coins: [],
-      masterCoins: {}
+      coins: {}
     };
   },
   watch: {
     usd(value) {
-      this.$data.brl = value * this.$data.masterCoins.USD.medium;
+      this.$data.brl = value * this.$data.coins.usd.medium;
     },
     eur(value) {
-      this.$data.brl = value * this.$data.masterCoins.EUR.medium;
+      this.$data.brl = value * this.$data.coins.eur.medium;
     }
   },
   methods: {
-    async getCoinsInfos() {
-      const { coins, masterCoins } = await Api.getAll();
-
-      this.$data.coins = coins;
-      this.$data.masterCoins = masterCoins;
+    async getCoins() {
+      this.$data.coins = await Api.getAll();
     }
   },
   mounted() {
-    this.getCoinsInfos();
+    this.getCoins();
   }
 };
 </script>
