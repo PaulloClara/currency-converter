@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "vue-cli-service serve",
+    "server": "NODE_ENV=development yarn build && node production/server.js ",
     "build": "vue-cli-service build",
-    "submit": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "submit": "push-dir --dir=production/dist --branch=gh-pages --cleanup",
     "deploy": "yarn build && yarn submit",
     "lint": "vue-cli-service lint"
   },

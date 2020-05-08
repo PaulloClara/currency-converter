@@ -6,11 +6,11 @@
         Real BRL
       </c-field>
       <c-field v-model="$data.usd">
-        <template #prefix>{{ $data.coins.usd.symbol }}</template>
+        <template #prefix>$</template>
         Dolar USD
       </c-field>
       <c-field v-model="$data.eur">
-        <template #prefix>{{ $data.coins.eur.symbol }}</template>
+        <template #prefix>€</template>
         Euro EUR
       </c-field>
     </header>
