@@ -6,6 +6,7 @@
     <c-input
       class="input"
       :value="value"
+      v-bind="{ decimal: ',', thousands: '.' }"
       :name="$attrs.name"
       @input="$emit('input', $event)"
     ></c-input>

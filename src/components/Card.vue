@@ -6,7 +6,7 @@
     </header>
 
     <main class="content">
-      <c-field v-model="value" :newValue="newValue">
+      <c-field v-model="value" :newValue="newValue" :name="coin.code">
         Valor em {{ coin.code }}
       </c-field>
 
@@ -19,7 +19,6 @@
 
     <footer class="footer">
       <hr class="divider" />
-
       <p class="date">
         {{
           Intl.DateTimeFormat("pt-BR", {
