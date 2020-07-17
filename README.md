@@ -1,4 +1,4 @@
-# Conversor de Moedas
+# Currency Converter
 
 Front Web para consumir API de terceiro.
 
@@ -10,5 +10,5 @@ Front Web para consumir API de terceiro.
 
 #### Links
 
-Site [Conversor de Moedas](https://paulloclara.github.io/conversor-de-moedas)\
+Site [Currency Converter](https://paulloclara.github.io/currency-converter)\
 API [AwesomeAPI](https://docs.awesomeapi.com.br/)

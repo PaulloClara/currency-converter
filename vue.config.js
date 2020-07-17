@@ -1,11 +1,11 @@
 const { NODE_ENV } = process.env;
 
 module.exports = {
-  publicPath: NODE_ENV === "production" ? "/conversor-de-moedas/" : "/",
+  publicPath: NODE_ENV === "production" ? "/currency-converter/" : "/",
   outputDir: "production/dist",
   lintOnSave: false,
   pwa: {
-    name: "Conversor De Moedas",
+    name: "Currency Converter",
     display: "standalone",
     themeColor: "#f7931a",
     msTileColor: "#f7931a",
@@ -13,8 +13,8 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: "#f7931a",
     manifestOptions: {
       start_url: ".",
-      short_name: "ConversorM",
-      description: "Conversor de Moedas.",
+      short_name: "CConverter",
+      description: "Currency Converter.",
       background_color: "#ffdb19"
     }
   }
