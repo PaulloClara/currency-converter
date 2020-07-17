@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="app">
-    <header class="header">
+    <header class="appbar">
       <c-field v-model="$data.brl">
         <template #prefix>R$</template>
         Real BRL
@@ -17,19 +17,19 @@
 
     <main class="content">
       <c-card
-        v-for="(coin, index) of coins"
+        v-for="(coin, index) of $data.coins"
         :key="index"
         :coin="coin"
         :brl="brl"
       ></c-card>
     </main>
 
-    <footer class="footer"></footer>
+    <footer class="footerbar"></footer>
   </div>
 </template>
 
 <script>
-import Api from "@/services/api";
+import awesomeApi from "@/services/awesomeapi";
 
 import Card from "@/components/Card";
 import Field from "@/components/Field";
@@ -40,14 +40,12 @@ export default {
     "c-card": Card,
     "c-field": Field,
   },
-  data() {
-    return {
-      brl: 0,
-      usd: 0,
-      eur: 0,
-      coins: {},
-    };
-  },
+  data: () => ({
+    brl: 0,
+    usd: 0,
+    eur: 0,
+    coins: {},
+  }),
   watch: {
     usd(value) {
       this.$data.brl = value * this.$data.coins.usd.medium;
@@ -58,7 +56,7 @@ export default {
   },
   methods: {
     async getCoins() {
-      this.$data.coins = await Api.getAll();
+      this.$data.coins = await awesomeApi.all();
     },
   },
   mounted() {
@@ -76,7 +74,7 @@ export default {
   background-color: var(--gold);
 }
 
-.header {
+.appbar {
   display: flex;
   justify-content: space-around;
 

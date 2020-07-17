@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const https = axios.create({
+const api = axios.create({
   baseURL: "https://economia.awesomeapi.com.br",
   timeout: 20000,
 });
 
 export default {
-  async getAll() {
+  async all() {
     const coins = {};
-    const { data: responseData } = await https.get("/all");
+    const { data: responseData } = await api.get("/all");
 
     Object.keys(responseData).forEach((code) => {
       const coin = responseData[code];

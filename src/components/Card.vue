@@ -59,12 +59,10 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      value: "",
-      newValue: "",
-    };
-  },
+  data: () => ({
+    value: "",
+    newValue: "",
+  }),
   computed: {
     coinUp() {
       return (this.$data.value * this.$props.coin.high).toFixed(2);

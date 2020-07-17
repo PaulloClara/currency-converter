@@ -1,12 +1,10 @@
 import Vue from "vue";
-
 import App from "@/App";
-import "@/global.css";
+
+import "@/main.css";
 
 Vue.config.productionTip = false;
 
 new Vue({
-  render(h) {
-    return h(App);
-  },
+  render: (h) => h(App),
 }).$mount("#app");

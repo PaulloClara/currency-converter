@@ -11,7 +11,7 @@
 
       <c-input
         class="input"
-        :value="value"
+        :value="$data.value"
         :name="$attrs.name"
         v-bind="{ decimal: ',', thousands: '.' }"
         @input="$emit('input', $event)"
@@ -34,14 +34,12 @@ export default {
       required: false,
     },
   },
-  data() {
-    return {
-      value: "",
-    };
-  },
+  data: () => ({
+    value: "",
+  }),
   watch: {
     newValue(value) {
-      this.value = value;
+      this.$data.value = value;
     },
   },
 };
