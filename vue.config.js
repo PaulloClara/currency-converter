@@ -15,7 +15,7 @@ module.exports = {
       start_url: ".",
       short_name: "CConverter",
       description: "Currency Converter.",
-      background_color: "#ffdb19"
-    }
-  }
+      background_color: "#ffdb19",
+    },
+  },
 };

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const https = axios.create({
   baseURL: "https://economia.awesomeapi.com.br",
-  timeout: 20000
+  timeout: 20000,
 });
 
 export default {
@@ -10,7 +10,7 @@ export default {
     const coins = {};
     const { data: responseData } = await https.get("/all");
 
-    Object.keys(responseData).forEach(code => {
+    Object.keys(responseData).forEach((code) => {
       const coin = responseData[code];
 
       coin.low = parseFloat(coin.low);
@@ -41,5 +41,5 @@ export default {
     coins.xrp.symbol = "~";
 
     return coins;
-  }
+  },
 };

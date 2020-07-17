@@ -38,14 +38,14 @@ export default {
   name: "App",
   components: {
     "c-card": Card,
-    "c-field": Field
+    "c-field": Field,
   },
   data() {
     return {
       brl: 0,
       usd: 0,
       eur: 0,
-      coins: {}
+      coins: {},
     };
   },
   watch: {
@@ -54,16 +54,16 @@ export default {
     },
     eur(value) {
       this.$data.brl = value * this.$data.coins.eur.medium;
-    }
+    },
   },
   methods: {
     async getCoins() {
       this.$data.coins = await Api.getAll();
-    }
+    },
   },
   mounted() {
     this.getCoins();
-  }
+  },
 };
 </script>
 

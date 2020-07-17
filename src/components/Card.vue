@@ -31,7 +31,7 @@
             month: "long",
             year: "numeric",
             hour: "2-digit",
-            minute: "2-digit"
+            minute: "2-digit",
           }).format($props.coin.create_date)
         }}
       </p>
@@ -47,22 +47,22 @@ export default {
   name: "Card",
   components: {
     "c-field": Field,
-    "c-result": Result
+    "c-result": Result,
   },
   props: {
     coin: {
       type: Object,
-      required: true
+      required: true,
     },
     brl: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       value: "",
-      newValue: ""
+      newValue: "",
     };
   },
   computed: {
@@ -74,14 +74,14 @@ export default {
     },
     coinVar() {
       return (this.$data.value * this.$props.coin.diff).toFixed(2);
-    }
+    },
   },
   watch: {
     brl(value) {
       this.$data.value = (value / this.$props.coin.medium).toFixed(2);
       this.$data.newValue = this.$data.value;
-    }
-  }
+    },
+  },
 };
 </script>
 

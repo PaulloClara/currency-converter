@@ -5,7 +5,7 @@
       {{
         Intl.NumberFormat("pt-BR", {
           style: "currency",
-          currency: "BRL"
+          currency: "BRL",
         }).format($props.value)
       }}
     </span>
@@ -20,19 +20,19 @@ export default {
   props: {
     value: {
       type: [String, Number],
-      required: true
+      required: true,
     },
     icon: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     SVGInject,
     getImage() {
       return require(`@/assets/${this.$props.icon}.svg`);
-    }
-  }
+    },
+  },
 };
 </script>
 

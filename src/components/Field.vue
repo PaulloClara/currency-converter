@@ -26,24 +26,24 @@ import { Money } from "v-money";
 export default {
   name: "Field",
   components: {
-    "c-input": Money
+    "c-input": Money,
   },
   props: {
     newValue: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
   data() {
     return {
-      value: ""
+      value: "",
     };
   },
   watch: {
     newValue(value) {
       this.value = value;
-    }
-  }
+    },
+  },
 };
 </script>
 
