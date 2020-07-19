@@ -1,14 +1,15 @@
-# Currency Converter
+# **Currency Converter**
 
-Front Web para consumir API de terceiro.
+> Simple currency converter made in VueJS using AwesomeAPI.
 
-### Modulos
+## Technologies
 
-- Vue
-- Bulma
-- Axios
+- [VueJS]: The progressive
+  JavaScript framework.
+- [AxiosJS]: Promise based HTTP client for the browser and [NodeJS].
+- [AwesomeAPI]: Currency quotes API.
 
-#### Links
-
-Site [Currency Converter](https://paulloclara.github.io/currency-converter)\
-API [AwesomeAPI](https://docs.awesomeapi.com.br/)
+[vuejs]: https://vuejs.org/
+[axiosjs]: https://github.com/axios/axios
+[awesomeapi]: https://docs.awesomeapi.com.br/api-de-moedas
+[nodejs]: https://nodejs.org/en/
