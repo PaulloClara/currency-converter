@@ -23,8 +23,6 @@
         :brl="brl"
       ></c-card>
     </main>
-
-    <footer class="footerbar"></footer>
   </div>
 </template>
 
@@ -65,106 +63,101 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  background-color: var(--gold);
 }
 
-.appbar {
+#app > .appbar {
   display: flex;
   justify-content: space-around;
 
-  margin: 0 0 24px;
+  width: 100%;
   padding: 12px;
 
-  box-shadow: inset 2px -1px 4px #0004;
-  background-color: var(--bitcoin);
+  z-index: 12;
+  position: fixed;
+
+  background-color: var(--bg-secondary);
 }
 
-.c-field {
-  width: 32%;
+#app > .appbar::before {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 2px;
+
+  bottom: 0;
+  filter: blur(1px);
+
+  background-image: linear-gradient(45deg, #89ff00, var(--bg-primary), #00bcd4);
+}
+
+#app > .appbar .c-field {
   max-width: 280px;
 }
 
-.content {
-  display: grid;
-
-  grid-gap: 12px;
-  grid-template-columns: repeat(8, 1fr);
-
-  padding: 0 80px;
+#app > .appbar .c-field + .c-field {
+  margin-left: 12px;
 }
 
-@media only screen and (max-width: 2580px) {
-  .content {
-    grid-template-columns: repeat(7, 1fr);
-  }
+#app > .content {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 120px 48px 48px;
 }
 
-@media only screen and (max-width: 2180px) {
-  .content {
-    grid-template-columns: repeat(6, 1fr);
-  }
+#app > .content .c-card {
+  margin: 12px;
 }
 
-@media only screen and (max-width: 1920px) {
-  .content {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media only screen and (max-width: 1620px) {
-  .content {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media only screen and (max-width: 1366px) {
-  .content {
-    padding: 0 24px;
-  }
-}
-
-@media only screen and (max-width: 1280px) {
-  .content {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media only screen and (max-width: 940px) {
-  .content {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .content {
-    padding: 0 12px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .content {
-    grid-template-columns: 1fr;
+@media only screen and (max-width: 800px) {
+  #app > .content {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .header {
-    flex-direction: column;
+  #app > .appbar {
+    flex-wrap: wrap;
   }
 
-  .c-field {
+  #app > .appbar .c-field {
+    width: 160px;
+  }
+
+  #app > .appbar .c-field + .c-field {
+    margin: 6px 0 0;
+  }
+
+  #app > .content {
+    padding: 172px 8px;
+  }
+
+  #app > .content .c-card {
     width: 100%;
-    max-width: unset;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  #app > .content {
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  .c-field + .c-field {
-    margin-top: 12px;
+  #app > .appbar .c-field {
+    width: 100%;
   }
 }
 </style>

@@ -1,22 +1,16 @@
 <template lang="html">
   <div class="c-field">
-    <label class="label" :for="$attrs.name">
-      <slot name="default"></slot>
-    </label>
+    <span class="prefix">
+      <slot name="prefix"></slot>
+    </span>
 
-    <div class="content">
-      <span class="prefix">
-        <slot name="prefix"></slot>
-      </span>
-
-      <c-input
-        class="input"
-        :value="$data.value"
-        :name="$attrs.name"
-        v-bind="{ decimal: ',', thousands: '.' }"
-        @input="$emit('input', $event)"
-      ></c-input>
-    </div>
+    <c-input
+      class="input"
+      :value="$data.value"
+      :name="$attrs.name"
+      v-bind="{ decimal: ',', thousands: '.' }"
+      @input="$emit('input', $event)"
+    ></c-input>
   </div>
 </template>
 
@@ -45,61 +39,40 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 .c-field {
   display: flex;
-  flex-direction: column;
 
-  color: #fff;
-  font: bold 18px small-caption;
-}
-
-.label {
-  margin-bottom: 2px;
-  text-shadow: 0 0 2px #000;
-}
-
-.content {
-  display: flex;
-  height: 36px;
-
-  border: 4px solid var(--dollar);
-  border-radius: 4px 18px 4px 4px;
+  border: 6px solid var(--dollar);
+  border-radius: 8px 24px 24px 8px;
 
   background-color: var(--dollar);
 }
 
-.prefix {
-  display: inline-flex;
+.c-field .prefix {
+  display: flex;
 
   align-items: center;
   justify-content: center;
 
-  width: 32px;
-  border-radius: 4px;
+  width: 36px;
 
-  text-shadow: 0 0 4px #0008;
-  background-color: var(--dollar);
+  color: #fff;
+  text-shadow: 0 0 4px #333;
 }
 
-.input {
+.c-field .input {
   width: 100%;
-
-  padding: 0 12px;
+  padding: 4px 12px;
 
   border: none;
-  border-radius: 12px 18px 2px 12px;
+  border-radius: 16px;
 
   outline: none;
-  box-shadow: inset 0 0;
-
   transition: 0.2s;
 
-  color: var(--dollar);
-  font-size: 16px;
-}
-
-.input:focus {
-  box-shadow: inset 0 0 0 2px var(--dollar);
+  color: #5d686b;
+  font-size: 1rem;
+  font-weight: 500;
 }
 </style>

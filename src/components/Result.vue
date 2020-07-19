@@ -36,8 +36,12 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
-.text {
+<style lang="css">
+.c-result .icon {
+  height: 1.2rem;
+}
+
+.c-result .text {
   margin-left: 6px;
 }
 </style>

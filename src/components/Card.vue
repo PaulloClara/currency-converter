@@ -1,5 +1,5 @@
 <template>
-  <section class="c-card">
+  <section class="c-card" :data-coin="$props.coin.code">
     <header class="header">
       <h3 class="title">{{ $props.coin.name }}</h3>
       <hr class="divider" />
@@ -83,61 +83,168 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 .c-card {
+  position: relative;
+
+  width: 280px;
+  min-width: 260px;
+  height: 340px;
+
+  padding: 6px 24px;
+  border-radius: 8px;
+
   color: #fff;
-
-  width: 100%;
-  min-width: 280px;
-
-  border-radius: 4px;
-
-  transition: box-shadow 0.4s;
-
-  box-shadow: inset 0 0 6px 1px #0004;
-  background-color: var(--bitcoin);
+  background-color: var(--bg-secondary);
 }
 
-.c-card:hover {
-  box-shadow: inset 0 0 12px 2px #0004;
+.c-card::before {
+  content: "";
+  position: absolute;
+
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+
+  z-index: -1;
+
+  background-color: #fff;
 }
 
-.title {
+.c-card::after {
+  content: "";
+  position: absolute;
+
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+
+  z-index: -2;
+  filter: blur(6px);
+
+  background-color: #fff;
+}
+
+.c-card::before,
+.c-card::after {
+  --position: 45deg;
+
+  border-radius: 6px;
+  background-image: linear-gradient(
+    var(--position),
+    #89ff00,
+    var(--bg-primary),
+    #00bcd4
+  );
+}
+
+.c-card:hover::before,
+.c-card:hover::after {
+  animation: card-focus 1s linear infinite;
+}
+
+.c-card .divider {
+  height: 2px;
+}
+
+.c-card > .header .title {
   padding: 12px;
 
   text-align: center;
   text-shadow: 0 0 4px #000;
 
   color: #fff;
-  font: bold 20px caption;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
-.divider {
-  height: 1px;
-  background-color: #0004;
-
-  border-radius: 50%;
-}
-
-.content {
-  padding: 24px;
-
-  font: normal 18px small-caption;
+.c-card > .content {
+  padding: 24px 0;
   text-shadow: 0 0 2px #000;
+
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.details {
-  margin-top: 22px;
+.c-card > .content .details {
+  margin-top: 24px;
 }
 
-.footer {
-  text-align: center;
-
-  color: #eee;
-  font: lighter 16px small-caption;
-}
-
-.date {
+.c-card > .footer .date {
   padding: 12px 0;
+
+  text-align: center;
+  text-shadow: 0 0 2px #000;
+
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+@keyframes card-focus {
+  0% {
+    --position: 45deg;
+  }
+  5% {
+    --position: 63deg;
+  }
+  10% {
+    --position: 81deg;
+  }
+  15% {
+    --position: 99deg;
+  }
+  20% {
+    --position: 117deg;
+  }
+  25% {
+    --position: 135deg;
+  }
+  30% {
+    --position: 153deg;
+  }
+  35% {
+    --position: 171deg;
+  }
+  40% {
+    --position: 189deg;
+  }
+  45% {
+    --position: 207deg;
+  }
+  50% {
+    --position: 225deg;
+  }
+  55% {
+    --position: 243deg;
+  }
+  60% {
+    --position: 261deg;
+  }
+  65% {
+    --position: 279deg;
+  }
+  70% {
+    --position: 297deg;
+  }
+  75% {
+    --position: 315deg;
+  }
+  80% {
+    --position: 333deg;
+  }
+  85% {
+    --position: 351deg;
+  }
+  90% {
+    --position: 9deg;
+  }
+  95% {
+    --position: 27deg;
+  }
+  100% {
+    --position: 45deg;
+  }
 }
 </style>
