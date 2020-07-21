@@ -19,7 +19,13 @@ export default {
       coin.diff = coin.high - coin.low;
       coin.medium = (coin.high + coin.low) / 2;
 
-      coin.create_date = new Date(coin.create_date);
+      coin.create_date = globalThis.Intl.DateTimeFormat("pt-BR", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(new Date(coin.create_date));
 
       coins[code.toLowerCase()] = coin;
     });

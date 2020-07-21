@@ -22,38 +22,28 @@
       </c-field>
 
       <aside class="details">
-        <c-result icon="up" :value="coinUp"></c-result>
-        <c-result icon="down" :value="coinDown"></c-result>
-        <c-result icon="variation" :value="coinVar"></c-result>
+        <c-icon name="up" text>{{ coinUp }}</c-icon>
+        <c-icon name="down" text>{{ coinDown }}</c-icon>
+        <c-icon name="variation" text>{{ coinUp }}</c-icon>
       </aside>
     </main>
 
     <footer class="footer">
       <hr class="divider" />
-      <p class="date">
-        {{
-          Intl.DateTimeFormat("pt-BR", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-          }).format($props.coin.create_date)
-        }}
-      </p>
+      <p class="date" v-text="$props.coin.create_date"></p>
     </footer>
   </section>
 </template>
 
 <script>
+import Icon from "@/components/Icon";
 import Field from "@/components/Field";
-import Result from "@/components/Result";
 
 export default {
   name: "Card",
   components: {
+    "c-icon": Icon,
     "c-field": Field,
-    "c-result": Result,
   },
   props: {
     coin: {
@@ -72,13 +62,13 @@ export default {
   }),
   computed: {
     coinUp() {
-      return (this.$data.value * this.$props.coin.high).toFixed(2);
+      return this.formatCoinValue(this.$data.value * this.$props.coin.high);
     },
     coinDown() {
-      return (this.$data.value * this.$props.coin.low).toFixed(2);
+      return this.formatCoinValue(this.$data.value * this.$props.coin.low);
     },
     coinVar() {
-      return (this.$data.value * this.$props.coin.diff).toFixed(2);
+      return this.formatCoinValue(this.$data.value * this.$props.coin.diff);
     },
   },
   watch: {
@@ -90,6 +80,12 @@ export default {
   methods: {
     updateCardAnimation({ status }) {
       this.$data.animation = status;
+    },
+    formatCoinValue(value) {
+      return globalThis.Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(value);
     },
   },
 };
