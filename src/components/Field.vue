@@ -8,8 +8,11 @@
       class="input"
       :value="$data.value"
       :name="$attrs.name"
+      :autofocus="$props.autofocus"
       v-bind="{ decimal: ',', thousands: '.' }"
       @input="$emit('input', $event)"
+      @blur.native="$emit('blur', $event)"
+      @focus.native="$emit('focus', $event)"
     ></c-input>
   </div>
 </template>
@@ -23,6 +26,10 @@ export default {
     "c-input": Money,
   },
   props: {
+    autofocus: {
+      type: Boolean,
+      default: false,
+    },
     newValue: {
       type: String,
       required: false,

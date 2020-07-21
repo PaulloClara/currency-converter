@@ -1,5 +1,9 @@
 <template>
-  <section class="c-card" :data-coin="$props.coin.code">
+  <section
+    class="c-card"
+    :data-coin-code="$props.coin.code"
+    :data-card-animation="$data.animation"
+  >
     <header class="header">
       <h3 class="title">{{ $props.coin.name }}</h3>
       <hr class="divider" />
@@ -10,6 +14,8 @@
         v-model="$data.value"
         :newValue="$data.newValue"
         :name="$props.coin.code"
+        @blur="updateCardAnimation({ status: false })"
+        @focus="updateCardAnimation({ status: true })"
       >
         <template #prefix>{{ $props.coin.symbol }}</template>
         Valor em {{ $props.coin.code }}
@@ -62,6 +68,7 @@ export default {
   data: () => ({
     value: "",
     newValue: "",
+    animation: false,
   }),
   computed: {
     coinUp() {
@@ -80,16 +87,22 @@ export default {
       this.$data.newValue = this.$data.value;
     },
   },
+  methods: {
+    updateCardAnimation({ status }) {
+      this.$data.animation = status;
+    },
+  },
 };
 </script>
 
 <style lang="css">
 .c-card {
+  --position: 45deg;
   position: relative;
 
   width: 280px;
-  min-width: 260px;
   height: 340px;
+  min-width: 260px;
 
   padding: 6px 24px;
   border-radius: 8px;
@@ -108,8 +121,6 @@ export default {
   left: -4px;
 
   z-index: -1;
-
-  background-color: #fff;
 }
 
 .c-card::after {
@@ -123,26 +134,20 @@ export default {
 
   z-index: -2;
   filter: blur(6px);
-
-  background-color: #fff;
 }
 
 .c-card::before,
 .c-card::after {
-  --position: 45deg;
+  animation: card-animation 1.6s linear infinite paused;
   border-radius: 6px;
 
-  background-image: linear-gradient(
-    var(--position),
-    #89ff00,
-    var(--bg-primary),
-    #00bcd4
-  );
+  background: #fff
+    linear-gradient(var(--position), #89ff00, var(--bg-primary), #00bcd4);
 }
 
-.c-card:hover::before,
-.c-card:hover::after {
-  animation: card-animation 1.2s linear infinite;
+.c-card[data-card-animation="true"]::before,
+.c-card[data-card-animation="true"]::after {
+  animation-play-state: running;
 }
 
 .c-card .divider {

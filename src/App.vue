@@ -1,15 +1,28 @@
 <template lang="html">
   <div id="app">
-    <header class="appbar">
-      <c-field v-model="$data.brl">
+    <header class="appbar" :data-appbar-animation="$data.appbar.animation">
+      <c-field
+        v-model="$data.brl"
+        :autofocus="true"
+        @blur="updateAppbarAnimation({ status: false })"
+        @focus="updateAppbarAnimation({ status: true })"
+      >
         <template #prefix>R$</template>
         Real BRL
       </c-field>
-      <c-field v-model="$data.usd">
+      <c-field
+        v-model="$data.usd"
+        @blur="updateAppbarAnimation({ status: false })"
+        @focus="updateAppbarAnimation({ status: true })"
+      >
         <template #prefix>$</template>
         Dolar USD
       </c-field>
-      <c-field v-model="$data.eur">
+      <c-field
+        v-model="$data.eur"
+        @blur="updateAppbarAnimation({ status: false })"
+        @focus="updateAppbarAnimation({ status: true })"
+      >
         <template #prefix>€</template>
         Euro EUR
       </c-field>
@@ -43,6 +56,9 @@ export default {
     usd: 0,
     eur: 0,
     coins: {},
+    appbar: {
+      animation: false,
+    },
   }),
   watch: {
     usd(value) {
@@ -53,6 +69,9 @@ export default {
     },
   },
   methods: {
+    updateAppbarAnimation({ status }) {
+      this.$data.appbar.animation = status;
+    },
     async getCoins() {
       this.$data.coins = await awesomeApi.all();
     },
@@ -94,10 +113,13 @@ export default {
 
   bottom: 0;
   filter: blur(1px);
-
-  animation: appbar-animation 4s linear infinite;
+  animation: appbar-animation 16s linear infinite paused;
 
   background-image: linear-gradient(45deg, #89ff00, var(--bg-primary), #00bcd4);
+}
+
+#app > .appbar[data-appbar-animation="true"]::before {
+  animation-play-state: running;
 }
 
 #app > .appbar .c-field {
