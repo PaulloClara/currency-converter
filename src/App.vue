@@ -95,6 +95,8 @@ export default {
   bottom: 0;
   filter: blur(1px);
 
+  animation: appbar-animation 4s linear infinite;
+
   background-image: linear-gradient(45deg, #89ff00, var(--bg-primary), #00bcd4);
 }
 
@@ -119,6 +121,15 @@ export default {
 
 #app > .content .c-card {
   margin: 12px;
+}
+
+@keyframes appbar-animation {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }
 
 @media only screen and (max-width: 800px) {
