@@ -130,8 +130,8 @@ export default {
 .c-card::before,
 .c-card::after {
   --position: 45deg;
-
   border-radius: 6px;
+
   background-image: linear-gradient(
     var(--position),
     #89ff00,
@@ -142,7 +142,7 @@ export default {
 
 .c-card:hover::before,
 .c-card:hover::after {
-  animation: card-focus 1s linear infinite;
+  animation: card-animation 1.2s linear infinite;
 }
 
 .c-card .divider {
@@ -182,7 +182,7 @@ export default {
   font-weight: 300;
 }
 
-@keyframes card-focus {
+@keyframes card-animation {
   0% {
     --position: 45deg;
   }
