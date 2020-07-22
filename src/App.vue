@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="app">
+  <div id="app" :data-app-animation="$data.animation">
     <header class="appbar" :data-appbar-animation="$data.appbar.animation">
       <c-field
         v-model="$data.brl"
@@ -60,6 +60,7 @@ export default {
     usd: 0,
     eur: 0,
     coins: {},
+    animation: true,
     appbar: {
       animation: false,
     },
@@ -73,11 +74,15 @@ export default {
     },
   },
   methods: {
+    updateAppAnimation({ status }) {
+      this.$data.animation = status;
+    },
     updateAppbarAnimation({ status }) {
       this.$data.appbar.animation = status;
     },
     async getCoins() {
       this.$data.coins = await awesomeApi.all();
+      this.updateAppAnimation({ status: false });
     },
   },
   mounted() {
@@ -93,6 +98,27 @@ export default {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#app::after {
+  content: "";
+  position: fixed;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  opacity: 0;
+
+  z-index: 64;
+  pointer-events: none;
+
+  transition: opacity 2s linear;
+  background-color: var(--bg-primary);
+}
+
+#app[data-app-animation="true"]::after {
+  opacity: 1;
 }
 
 #app > .appbar {
@@ -119,7 +145,12 @@ export default {
   filter: blur(1px);
   animation: appbar-animation 16s linear infinite paused;
 
-  background-image: linear-gradient(45deg, var(--primary), var(--bg-primary), var(--secondary));
+  background-image: linear-gradient(
+    45deg,
+    var(--primary),
+    var(--bg-primary),
+    var(--secondary)
+  );
 }
 
 #app > .appbar[data-appbar-animation="true"]::before {
