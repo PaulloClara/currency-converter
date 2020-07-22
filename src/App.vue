@@ -119,7 +119,7 @@ export default {
   filter: blur(1px);
   animation: appbar-animation 16s linear infinite paused;
 
-  background-image: linear-gradient(45deg, #89ff00, var(--bg-primary), #00bcd4);
+  background-image: linear-gradient(45deg, var(--primary), var(--bg-primary), var(--secondary));
 }
 
 #app > .appbar[data-appbar-animation="true"]::before {

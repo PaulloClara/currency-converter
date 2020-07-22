@@ -138,7 +138,7 @@ export default {
   border-radius: 6px;
 
   background: #fff
-    linear-gradient(var(--position), #89ff00, var(--bg-primary), #00bcd4);
+    linear-gradient(var(--position), var(--primary), var(--bg-primary), var(--secondary));
 }
 
 .c-card[data-card-animation="true"]::before,

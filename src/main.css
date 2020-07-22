@@ -8,9 +8,9 @@
 }
 
 :root {
-  --gold: #ffdb19;
-  --dollar: #85bb65;
-  --bitcoin: #f7931a;
+  --primary: #89ff00;
+  --secondary: #00bcd4;
+  --tertiary: #85bb65;
 
   --bg-primary: #010615;
   --bg-secondary: #060c21;
@@ -18,7 +18,7 @@
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--dollar) #ccc;
+  scrollbar-color: var(--tertiary) #ccc;
 }
 
 body {
@@ -35,5 +35,5 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  background-color: var(--dollar);
+  background-color: var(--tertiary);
 }

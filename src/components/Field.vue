@@ -50,10 +50,10 @@ export default {
 .c-field {
   display: flex;
 
-  border: 6px solid var(--dollar);
+  border: 6px solid var(--tertiary);
   border-radius: 8px 24px 24px 8px;
 
-  background-color: var(--dollar);
+  background-color: var(--tertiary);
 }
 
 .c-field .prefix {
