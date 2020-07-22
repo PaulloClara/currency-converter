@@ -35,10 +35,12 @@ export default {
 <style lang="css">
 .c-icon {
   display: flex;
+  height: 1.2rem;
 }
 
 .c-icon .img {
-  height: 1.2rem;
+  width: inherit;
+  height: inherit;
 }
 
 .c-icon .text {

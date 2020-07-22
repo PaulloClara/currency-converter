@@ -36,6 +36,8 @@
         :brl="brl"
       ></c-card>
     </main>
+
+    <c-footerbar></c-footerbar>
   </div>
 </template>
 
@@ -44,12 +46,14 @@ import awesomeApi from "@/services/awesomeapi";
 
 import Card from "@/components/Card";
 import Field from "@/components/Field";
+import Footerbar from "@/components/Footerbar";
 
 export default {
   name: "App",
   components: {
     "c-card": Card,
     "c-field": Field,
+    "c-footerbar": Footerbar,
   },
   data: () => ({
     brl: 0,
