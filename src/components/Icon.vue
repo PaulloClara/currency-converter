@@ -44,7 +44,12 @@ export default {
 }
 
 .c-icon .text {
+  margin-left: 8px;
+
+  overflow: hidden;
+  white-space: nowrap;
+
   color: #fff;
-  margin-left: 6px;
+  text-overflow: ellipsis;
 }
 </style>
