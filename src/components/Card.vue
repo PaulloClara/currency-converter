@@ -94,7 +94,12 @@ export default {
 <style lang="css">
 .c-card {
   --position: 45deg;
+
+  display: flex;
   position: relative;
+
+  flex-direction: column;
+  justify-content: space-around;
 
   width: 280px;
   height: 340px;
@@ -138,7 +143,12 @@ export default {
   border-radius: 6px;
 
   background: #fff
-    linear-gradient(var(--position), var(--primary), var(--bg-primary), var(--secondary));
+    linear-gradient(
+      var(--position),
+      var(--primary),
+      var(--bg-primary),
+      var(--secondary)
+    );
 }
 
 .c-card[data-card-animation="true"]::before,
