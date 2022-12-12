@@ -5,6 +5,6 @@
   "author": "paulloclara",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   }
 }
