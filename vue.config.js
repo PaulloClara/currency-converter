@@ -1,8 +1,7 @@
-const { NODE_ENV } = process.env;
+const { defineConfig } = require("@vue/cli-service");
 
-module.exports = {
-  publicPath: NODE_ENV === "production" ? "/currency-converter/" : "/",
-  outputDir: "production/dist",
+module.exports = defineConfig({
+  transpileDependencies: true,
   lintOnSave: false,
   pwa: {
     name: "Currency Converter",
@@ -13,9 +12,9 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: "#f7931a",
     manifestOptions: {
       start_url: ".",
-      short_name: "CConverter",
+      short_name: "Currency",
       description: "Currency Converter.",
       background_color: "#ffdb19",
     },
   },
-};
+});
