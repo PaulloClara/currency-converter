@@ -7,12 +7,16 @@ const props = defineProps<{
   options?: Partial<CurrencyInputOptions>;
 }>();
 
-const { inputRef, formattedValue, setValue } = useCurrencyInput({
+const defaultOptions = {
   currency: "BRL",
   autoDecimalDigits: true,
   hideCurrencySymbolOnFocus: false,
   hideGroupingSeparatorOnFocus: false,
   hideNegligibleDecimalDigitsOnFocus: false,
+};
+
+const { inputRef, formattedValue, setValue, setOptions } = useCurrencyInput({
+  ...defaultOptions,
   ...props.options,
 });
 
@@ -20,6 +24,14 @@ watch(
   () => props.modelValue,
   (value) => {
     setValue(value || 0);
+  }
+);
+
+watch(
+  () => props.options,
+  (options, previousOptions) => {
+    if (options?.currency !== previousOptions?.currency)
+      setOptions({ ...defaultOptions, ...options });
   }
 );
 </script>

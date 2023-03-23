@@ -8,36 +8,34 @@ const emits = defineEmits(["update:coin"]);
 const props = defineProps<{ coin: CoinT; primaryValue: number }>();
 const coinName = props.coin.name.split("/")?.[0] || props.coin.name;
 
-const coinCardValue = ref(1 / props.coin.high);
+const coinCardValue = ref(props.primaryValue / props.coin.high);
 
-function handleInput(event: any) {
-  const value = event.target.value;
-  const handledValue = value.replace(/[^0-9,]/g, "").replace(",", ".");
-  const numberValue = parseFloat(handledValue);
-
-  emits("update:coin", numberValue);
+function handleCoinValueChange() {
+  emits("update:coin", coinCardValue.value);
 }
 
 watch(
   () => props.primaryValue,
   (value) => (coinCardValue.value = value / props.coin.high)
 );
-watch([() => props.coin], () => {
-  console.debug("oi");
-});
+watch(
+  () => props.coin,
+  () => {
+    coinCardValue.value = props.primaryValue / props.coin.high;
+  }
+);
 </script>
 
 <template>
   <section class="coin-card">
     <h3 class="coin-card-title">{{ coinName }}</h3>
-    <div class="coin-card-value">
+    <form class="coin-card-value" @submit.prevent="handleCoinValueChange">
       <currency-input
         v-model="coinCardValue"
         :options="{ currency: coin.code }"
-        @input="handleInput"
       />
       <span class="coin-card-value-code">{{ coin.code }}</span>
-    </div>
+    </form>
   </section>
 </template>
 

@@ -74,7 +74,11 @@ getCoins();
   <div class="app-page">
     <header class="app-header">
       <div class="app-header-general-input">
-        <currency-input v-model="primaryValue" autofocus />
+        <currency-input
+          v-model="primaryValue"
+          :options="{ currency: selectedCode }"
+          autofocus
+        />
         <select class="app-header-select" @change="handleSelectCoinCode">
           <option
             v-for="code of SUPPORTED_ROOT_COIN_CODES"
