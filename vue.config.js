@@ -6,17 +6,18 @@ module.exports = defineConfig({
   publicPath:
     process.env.NODE_ENV === "production" ? "/currency-converter/" : "/",
   pwa: {
-    name: "Currency Converter",
+    name: "Conversor de Moedas",
     display: "standalone",
-    themeColor: "#f7931a",
-    msTileColor: "#f7931a",
+    themeColor: "#ffb302",
+    msTileColor: "#ffb302",
     appleMobileWebAppCapable: "yes",
-    appleMobileWebAppStatusBarStyle: "#f7931a",
+    appleMobileWebAppStatusBarStyle: "#ffb302",
     manifestOptions: {
       start_url: ".",
-      short_name: "Currency",
-      description: "Currency Converter.",
-      background_color: "#ffdb19",
+      short_name: "Conversor de Moedas",
+      description:
+        "Conversor de moedas capaz de converter várias moedas simultaneamente",
+      background_color: "#ffb302",
     },
   },
 });
