@@ -1,14 +1,14 @@
-# **Currency Converter**
+# **Conversor de Moedas**
 
-> Simple currency converter made in VueJS using AwesomeAPI.
+> Conversor de moedas capaz de converter várias moedas simultaneamente, tornando o processo de conversão mais eficiente e conveniente.
 
-## Technologies
+## Tecnologias
 
-- [VueJS]: The progressive JavaScript framework.
-- [Axios]: Promise based HTTP client for the browser and [NodeJS].
-- [AwesomeAPI]: Currency quotes API.
+- [VueJS]: Framework JavaScript de código aberto e progressivo usado para construir interfaces de usuário interativas e complexas.
+- [Axios]: Cliente HTTP baseado em Promises para [NodeJS].
+- [AwesomeAPI]: API de Cotações em tempo real com mais de 150 moedas.
 
 [vuejs]: https://vuejs.org/
-[axios]: https://github.com/axios/axios
+[axios]: https://axios-http.com/docs/intro
 [awesomeapi]: https://docs.awesomeapi.com.br/api-de-moedas
 [nodejs]: https://nodejs.org/en/
