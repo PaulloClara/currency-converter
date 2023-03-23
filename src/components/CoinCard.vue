@@ -14,16 +14,9 @@ function handleCoinValueChange() {
   emits("update:coin", coinCardValue.value);
 }
 
-watch(
-  () => props.primaryValue,
-  (value) => (coinCardValue.value = value / props.coin.high)
-);
-watch(
-  () => props.coin,
-  () => {
-    coinCardValue.value = props.primaryValue / props.coin.high;
-  }
-);
+watch([() => props.primaryValue, () => props.coin], () => {
+  coinCardValue.value = props.primaryValue / props.coin.high;
+});
 </script>
 
 <template>

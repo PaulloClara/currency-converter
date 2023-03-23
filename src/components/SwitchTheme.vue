@@ -29,9 +29,10 @@ function switchTheme() {
   border: none;
   outline: none;
   border-radius: 50%;
-  background-color: #eee8;
+  background-color: var(--primary-background-color);
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: #0000001f 0px 1px 3px, #0000003d 0px 1px 2px;
 
   i {
     color: var(--secondary-text-color);
@@ -48,7 +49,7 @@ function switchTheme() {
 
   &:hover {
     opacity: 0.9;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: #0000003d 0px 3px 8px;
   }
 }
 </style>

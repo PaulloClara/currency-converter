@@ -23,7 +23,7 @@ const formattedCodes = computed(() =>
 const primaryValue = ref(1);
 
 const coinList = ref<CoinListT>({});
-const isDarkTheme = ref(localStorage.getItem("THEME") === "dark");
+const isDarkTheme = ref((localStorage.getItem("THEME") || "dark") === "dark");
 
 const socialLinks = [
   {
@@ -194,6 +194,20 @@ getCoins();
   &.is-dark {
     .app-switch-theme {
       background-color: #fff3;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 1em;
+  }
+
+  @media only screen and (max-width: 420px) {
+    width: 100%;
+
+    .app-content {
+      .app-coin-cards {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
