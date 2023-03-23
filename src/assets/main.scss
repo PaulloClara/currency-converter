@@ -10,9 +10,52 @@
   --primary-color: #ffb302;
   --secondary-color: #48bf91;
   --primary-text-color: #333;
+  --secondary-text-color: #555;
+  --primary-background-color: #eeea;
+  --secondary-background-color: #fff;
+  --scrollbar-track-background: #fff;
+  --scrollbar-thumb-background: #ddd;
+  --scrollbar-thumb-hover-background: #ccc;
+
+  .is-dark {
+    --primary-text-color: #fff;
+    --secondary-text-color: #ddd;
+    --primary-background-color: #333;
+    --secondary-background-color: #000;
+    --scrollbar-track-background: #000;
+    --scrollbar-thumb-background: #222;
+    --scrollbar-thumb-hover-background: #333;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-background);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-background);
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--secondary-background-color);
 }
 
 body {
+  color: var(--primary-text-color);
   font-size: 16px;
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const SUPPORTED_COIN_CODES = ["USD-BRL", "EUR-BRL", "BTC-BRL"];
-
 const axiosInstance = axios.create({
   baseURL: "https://economia.awesomeapi.com.br/json/last",
   timeout: 20000,
@@ -31,9 +29,9 @@ export type CoinT = Omit<AwesomeCoinT, "low" | "high"> & {
 export type CoinListT = { [code: string]: CoinT };
 
 export default {
-  async getAll() {
+  async getAll(payload: { codes: string[] }) {
     const response = await axiosInstance.get<{ [code: string]: AwesomeCoinT }>(
-      `/${SUPPORTED_COIN_CODES.join(",")}`
+      `/${payload.codes.join(",")}`
     );
     const coins: CoinListT = {};
 
