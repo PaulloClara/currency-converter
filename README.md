@@ -2,6 +2,8 @@
 
 > Conversor de moedas capaz de converter várias moedas simultaneamente, tornando o processo de conversão mais eficiente e conveniente.
 
+![preview](https://i.ibb.co/kXzYBJk/output.gif)
+
 ## Tecnologias
 
 - [VueJS]: Framework JavaScript de código aberto e progressivo usado para construir interfaces de usuário interativas e complexas.
