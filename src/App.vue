@@ -9,7 +9,7 @@ import awesomeapi, { CoinListT, CoinT } from "@/services/awesomeapi";
 
 const SUPPORTED_COIN_CODES = [
   ...["BRL", "USD", "EUR", "ARS", "CNY"],
-  ...["JPY", "CHF", "BTC", "ETH"],
+  ...["GBP", "CHF", "BTC", "ETH"],
 ];
 const SUPPORTED_ROOT_COIN_CODES = ["BRL", "USD", "EUR"];
 
